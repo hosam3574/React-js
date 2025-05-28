@@ -1,17 +1,18 @@
 import { useLayoutEffect } from "react"
 import '../css/nav.css'
+import { Link } from "react-router-dom"
 
 export default function Nav ( ){
 
 
-    return[
+    return(
         <div className ='nav' >
         <ul>
             
-           <li>Home </li>
+           <li> <Link to='/'>Home</Link> </li>
            
 
- <li>About
+ <li>   <Link to = '/about'> About</Link>
             </li>
            
 
@@ -23,8 +24,12 @@ export default function Nav ( ){
 
 
         </div>
+
+
+
       
-   ]
+    )
+
 }
 
 
