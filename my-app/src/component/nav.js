@@ -20,6 +20,12 @@ export default function Nav ( ){
                 Contant
             </li>
 
+
+
+            <li>
+                <Link to ='/m'> Menu</Link>
+            </li>
+
         </ul>
 
 
