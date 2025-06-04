@@ -25,3 +25,17 @@ text-decoration: none;
 color: white;
 
 }
+
+
+
+
+
+.navLink{
+    text-decoration: none;
+    color: white;
+   
+}
+
+.navLink>:hover{
+color: rgb(0, 94, 255);
+}
