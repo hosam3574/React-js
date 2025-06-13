@@ -80,6 +80,11 @@ export default function ButtonAppBar() {
               <Link className='navLink' to ='/m'> Menu</Link>
           </Typography>
 
+
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+              <Link className='navLink' to ='/table'> table</Link>
+          </Typography>
+
           <Button color="inherit">Login</Button>
         </Toolbar>
       </AppBar>

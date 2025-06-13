@@ -6,6 +6,8 @@ import About from './component/about'
 import Footer from './component/footer'
 import Menu from './component/menu' 
 import {BrowserRouter, Route,Routes }from 'react-router-dom'
+import DataTable from './component/table';
+
 
 
 
@@ -18,7 +20,9 @@ function App() {
     <Routes>
 
 
-     <Route path='/' element = {<Home/>}/>
+     <Route path='/' element = {<Home/>}/> 
+
+     <Route path='/table' element = {<DataTable/>}/> 
 
 
 
