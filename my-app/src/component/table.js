@@ -72,6 +72,14 @@ export default function ColumnGroupingTable() {
     setPage(newPage);
   };
 
+ const [firstName, setfirstName] = useState('');
+  const [lasttName, setlasttName] = useState('');
+const [firstname, setFirstname] = useState('');
+const [age, setAge] = useState('');
+const [userData, setuserData] = useState([]);
+
+
+
   const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(+event.target.value);
     setPage(0);
@@ -149,10 +157,43 @@ export default function ColumnGroupingTable() {
       
 
 
-<form>
-  <input placeholder='first name'/>
- <input placeholder='last name'/>
- <input type='Number' placeholder='age'/>
+<form onSubmit={(event)=>{
+
+  event.preventDefault();
+console.log("first name",firstname);
+console.log("last name",lasttName);
+console.log("age ",age);
+
+setuserData([{id:3,firstname:firstName,lasttname:lasttName,age},...userData])
+
+
+
+
+
+
+} }>
+
+
+
+
+  <input  onChange={(event)=>{
+    setfirstName(event.target.value)
+  }}
+   placeholder='first name'/>
+
+
+
+ <input   onChange={(event)=>{
+    setlasttName(event.target.value)
+  }}
+ placeholder='last name'/>
+
+
+ <input onChange={(event)=>{
+    setlasttName(event.target.value)
+  }}                       type='Number' placeholder='age'/>
+
+
  <input type="submit"/>
 
 </form>
