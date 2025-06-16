@@ -7,6 +7,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
+import { useState } from 'react';
 
 const columns = [
   { id: 'name', label: 'Name', minWidth: 100 },
@@ -40,6 +41,7 @@ function createData(name, code, population, size) {
 }
 
 const rows = [
+  
   createData('India', 'IN', 1324171354, 3287263),
   createData('China', 'CN', 1403500365, 9596961),
   createData('Italy', 'IT', 60483973, 301340),
@@ -58,6 +60,11 @@ const rows = [
 ];
 
 export default function ColumnGroupingTable() {
+
+  
+    
+ 
+
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
@@ -70,6 +77,19 @@ export default function ColumnGroupingTable() {
     setPage(0);
   };
 
+
+
+
+
+  /*export default function DataTable(){
+    const[ useDatat ,setUserData ]=useState([
+      
+    ])
+  }*/
+
+
+
+  
   return (
     <Paper sx={{ width: '100%' }}>
       <TableContainer sx={{ maxHeight: 440 }}>
@@ -117,7 +137,7 @@ export default function ColumnGroupingTable() {
           </TableBody>
         </Table>
       </TableContainer>
-      <TablePagination
+       <TablePagination
         rowsPerPageOptions={[10, 25, 100]}
         component="div"
         count={rows.length}
@@ -126,6 +146,101 @@ export default function ColumnGroupingTable() {
         onPageChange={handleChangePage}
         onRowsPerPageChange={handleChangeRowsPerPage}
       />
+      
+
+
+<form>
+  <input placeholder='first name'/>
+ <input placeholder='last name'/>
+ <input type='Number' placeholder='age'/>
+ <input type="submit"/>
+
+</form>
+
+
+
+
+
+      <table border={1}>
+
+      <thead>
+<tr> 
+  <td>
+ID Country
+  </td>
+
+
+ 
+  <td>
+First Name Country
+  </td>
+
+
+
+
+  <td>
+Last Name Country
+  </td>
+</tr>
+
+      </thead>
+
+<tbody>
+  <tr>
+
+ 
+<td>
+
+  india
+</td>
+
+<td>
+
+  india
+</td>
+
+<td>
+
+  india
+</td>
+
+
+
+
+
+ </tr>
+
+
+<tr>
+  <td>
+    fdfh
+  </td>
+
+
+
+  <td>
+    fdfh
+  </td>
+
+
+
+
+  <td>
+    fdfh
+  </td>
+
+
+
+</tr>
+
+
+
+
+</tbody>
+
+
+
+      </table>
     </Paper>
   );
 }
