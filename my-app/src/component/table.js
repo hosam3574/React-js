@@ -8,6 +8,11 @@ import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import { useState } from 'react';
+import Button from '@mui/material/Button';
+
+
+
+
 
 const columns = [
   { id: 'name', label: 'Name', minWidth: 100 },
@@ -163,8 +168,9 @@ const [userData, setuserData] = useState([]);
 console.log("first name",firstname);
 console.log("last name",lasttName);
 console.log("age ",age);
+console.log(userData.length);
 
-setuserData([{id:3,firstname:firstName,lasttname:lasttName,age},...userData])
+setuserData([...userData, { id:userData.length+1,firstName:firstName,lasttName:lasttName,age:age}])
 
 
 
@@ -190,7 +196,7 @@ setuserData([{id:3,firstname:firstName,lasttname:lasttName,age},...userData])
 
 
  <input onChange={(event)=>{
-    setlasttName(event.target.value)
+    setAge(event.target.value)
   }}                       type='Number' placeholder='age'/>
 
 
@@ -207,72 +213,113 @@ setuserData([{id:3,firstname:firstName,lasttname:lasttName,age},...userData])
       <thead>
 <tr> 
   <td>
-ID Country
+ID 
   </td>
 
 
  
   <td>
-First Name Country
+First Name 
   </td>
 
 
 
 
   <td>
-Last Name Country
+Last Name 
   </td>
+
+ <td>
+age 
+  </td>
+
+
+  <td>
+    Delete
+  </td>
+
+
 </tr>
 
       </thead>
 
 <tbody>
-  <tr>
 
- 
-<td>
+{userData.map((user,index)=>{
+return(
 
-  india
-</td>
+<tr>  
+  <td>  
+    {user.id}
+    </td> 
 
-<td>
+<td>  
+    {user.firstName}
+    </td> 
 
-  india
-</td>
-
-<td>
-
-  india
-</td>
-
-
-
-
-
- </tr>
-
-
-<tr>
-  <td>
-    fdfh
-  </td>
+    <td>  
+    {user.lasttName}
+    </td> 
+<td>  
+    {user.age}
+    </td> 
 
 
 
-  <td>
-    fdfh
-  </td>
+    <td>
+
+      <Button onClick={()=>{
+
+   if(
+         window.confirm("Are You Suer you Want delete this user ?")){
+          
+          console.log("the user want to delete the row")
+          console.log("user id",user.id)
+
+         const newUserData=userData.filter((item)=>{
+          
+          return item.id !==user.id;
+
+         })
+
+         console.log(newUserData);
+         setuserData( newUserData);
+
+         }
+else{
+  console.log("the user dont want to delete the row")
+}
+
+
+   
+
+
+      }
 
 
 
-
-  <td>
-    fdfh
-  </td>
+      } >
 
 
+Delete
+        </Button>
 
-</tr>
+
+
+    </td>
+    
+     </tr>
+
+)
+
+
+})}
+
+
+
+  
+
+
 
 
 
