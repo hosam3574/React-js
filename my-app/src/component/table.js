@@ -98,9 +98,13 @@ export default function ColumnGroupingTable() {
 
  const [firstName, setfirstName] = useState('');
   const [lasttName, setlasttName] = useState('');
-const [firstname, setFirstname] = useState('');
 const [age, setAge] = useState('');
-const [userData, setuserData] = useState([]);
+const [userData, setuserData] = useState([  
+  {id:1,firstName:"mohsmmf",lasttName:"kgjf",age:44},
+  {id:2,firstName:"ali",lasttName:"kgjf",age:44},
+  {id:3,firstName:"morad",lasttName:"kgjf",age:44},
+  {id:4,firstName:"new",lasttName:"kgjf",age:44},
+]);
 
 
 
@@ -124,72 +128,57 @@ const [userData, setuserData] = useState([]);
   
   return (
     <Paper sx={{ width: '100%' }}>
-      <TableContainer sx={{ maxHeight: 440 }}>
-        <Table stickyHeader aria-label="sticky table">
-          <TableHead>
-            <TableRow>
-              <TableCell align="center" colSpan={2}>
-                Country
-              </TableCell>
-              <TableCell align="center" colSpan={3}>
-                Details
-              </TableCell>
-            </TableRow>
-            <TableRow>
-              {columns.map((column) => (
-                <TableCell
-                  key={column.id}
-                  align={column.align}
-                  style={{ top: 57, minWidth: column.minWidth }}
-                >
-                  {column.label}
-                </TableCell>
-              ))}
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {rows
-              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((row) => {
-                return (
-                  <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
-                    {columns.map((column) => {
-                      const value = row[column.id];
-                      return (
-                        <TableCell key={column.id} align={column.align}>
-                          {column.format && typeof value === 'number'
-                            ? column.format(value)
-                            : value}
-                        </TableCell>
-                      );
-                    })}
-                  </TableRow>
-                );
-              })}
-          </TableBody>
-        </Table>
-      </TableContainer>
-       <TablePagination
-        rowsPerPageOptions={[10, 25, 100]}
-        component="div"
-        count={rows.length}
-        rowsPerPage={rowsPerPage}
-        page={page}
-        onPageChange={handleChangePage}
-        onRowsPerPageChange={handleChangeRowsPerPage}
-      />
+ 
       
 
 
 <form onSubmit={(event)=>{
 
   event.preventDefault();
-console.log("first name",firstname);
+console.log("first name",firstName );
 console.log("last name",lasttName);
 console.log("age ",age);
 console.log(userData.length);
 
-setuserData([...userData, { id:userData.length+1,firstName:firstName,lasttName:lasttName,age:age}])
+
+var highestId =0;
+for(let i=0; i<userData.length;i++){
+
+  console.log ("userData[i].id",userData[i].id)
+
+  if( userData [i].id>=highestId){
+
+    highestId=userData[i].id+1;
+    console .log ("highest Id ",highestId);
+  }
+
+
+  
+}
+let newId = 1;
+let exists = true;
+
+for (let i = 1; ; i++) {
+  exists = false;
+
+  for (let j = 0; j < userData.length; j++) {
+    if (userData[j].id === i) {
+      exists = true;
+      break;
+    }
+  }
+
+  if (!exists) {
+    newId = i;
+    break;
+  }
+}
+
+console.log("New available ID:", newId);
+
+
+
+setuserData([...userData, { id:newId,firstName:firstName,lasttName:lasttName,age:age}])
 
 
 
@@ -362,13 +351,6 @@ Update
 
 
 
-  
-
-
-
-
-
-
 </tbody>
 
 
@@ -380,24 +362,7 @@ Update
 
 
 
-        <div>
-      <Button onClick={handleOpen}>Open modal</Button>
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            Text in a modal
-          </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-          </Typography>
-        </Box>
-      </Modal>
-    </div>
+        
     </Paper>
   );
 }
