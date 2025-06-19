@@ -11,7 +11,7 @@ import { useState } from 'react';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
-
+import Box from '@mui/material/Box';
 
 
 
@@ -307,30 +307,20 @@ Delete
         </Button>
 
     </td>
+
+
+
+
+
     <Button onClick={()=>{
 
-   if(
-         window.confirm("Are You Suer you Want delete this user ?")){
-          
-          console.log("the user want to delete the row")
-          console.log("user id",user.id)
+setfirstName(user.firstName);
+setlasttName( user.lasttName);
+setAge(user.age);
 
-         const newUserData=userData.filter((item)=>{
-          
-          return item.id !==user.id;
-
-         })
-
-         console.log(newUserData);
-         setuserData( newUserData);
-
-         }
-else{
-  console.log("the user dont want to delete the row")
-}
-      }
-
-      } >
+  handleOpen();
+    }}>
+    
 
 Update
         </Button>
@@ -359,7 +349,98 @@ Update
 
       </table>
 
+ <div>
+      <Button onClick={handleOpen}>Open modal</Button>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <form onSubmit={(event)=>{
 
+  event.preventDefault();
+console.log("first name",firstName );
+console.log("last name",lasttName);
+console.log("age ",age);
+console.log(userData.length);
+
+
+var highestId =0;
+for(let i=0; i<userData.length;i++){
+
+  console.log ("userData[i].id",userData[i].id)
+
+  if( userData [i].id>=highestId){
+
+    highestId=userData[i].id+1;
+    console .log ("highest Id ",highestId);
+  }
+
+
+  
+}
+let newId = 1;
+let exists = true;
+
+for (let i = 1; ; i++) {
+  exists = false;
+
+  for (let j = 0; j < userData.length; j++) {
+    if (userData[j].id === i) {
+      exists = true;
+      break;
+    }
+  }
+
+  if (!exists) {
+    newId = i;
+    break;
+  }
+}
+
+console.log("New available ID:", newId);
+
+
+
+setuserData([...userData, { id:newId,firstName:firstName,lasttName:lasttName,age:age}])
+
+
+
+
+
+
+} }>
+
+
+
+
+  <input value={firstName}  onChange={(event)=>{
+    setfirstName(event.target.value)
+  }}
+   placeholder='first name'/>
+
+
+
+ <input value={lasttName}   onChange={(event)=>{
+    setlasttName(event.target.value)
+  }}
+ placeholder='last name'/>
+
+
+ <input value={age} onChange={(event)=>{
+    setAge(event.target.value)
+  }}                       type='Number' placeholder='age'/>
+
+
+ <input type="submit"/>
+
+</form>
+
+        </Box>
+      </Modal>
+    </div>
 
 
         
