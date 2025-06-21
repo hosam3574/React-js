@@ -1,0 +1,77 @@
+.tableEdit{
+
+    font-size: 50px;
+    margin-left: 30%;
+    color: wheat;
+    
+}
+
+
+.hightable{
+   
+}
+
+.tableNames{
+
+    margin-left: 30%;
+    font-size: 20px;
+    margin-top: 60px;
+   
+    
+}
+
+
+
+.editFirstname{
+    font-size:20px;
+    color: aqua;
+    margin-top: 50px;
+
+}
+.editlastname{
+    font-size:20px;
+    color: rgb(170, 0, 255);
+    margin-top: 50px;
+
+}
+.editage{
+    font-size:20px;
+    color: aqua;
+    margin-top: 50px;
+
+}
+.editsubmit{
+    font-size:10px;
+    color: aqua;
+    margin-top: 50px;
+
+}
+
+.ID{
+
+color: rgb(70, 2, 99);
+}
+.first{
+color: indigo;
+}
+
+.last{
+color: rgb(66, 7, 109);
+}
+.age{
+color: rgb(63, 6, 104);
+}
+.deleat{
+color: indigo;
+}
+.update{
+color: indigo;
+}
+
+
+
+
+
+.INupdate{
+    color: blue;
+}

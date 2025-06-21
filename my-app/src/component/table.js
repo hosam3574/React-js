@@ -1,3 +1,8 @@
+
+
+import'../css/table.css';
+
+
 import * as React from 'react';
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
@@ -99,6 +104,7 @@ export default function ColumnGroupingTable() {
  const [firstName, setfirstName] = useState('');
   const [lasttName, setlasttName] = useState('');
 const [age, setAge] = useState('');
+const [idToUpdate,setIdToUpdate]=useState("");
 const [userData, setuserData] = useState([  
   {id:1,firstName:"mohsmmf",lasttName:"kgjf",age:44},
   {id:2,firstName:"ali",lasttName:"kgjf",age:44},
@@ -130,14 +136,14 @@ const [userData, setuserData] = useState([
     <Paper sx={{ width: '100%' }}>
  
       
-
-
+<div className='tableEdit'>
 <form onSubmit={(event)=>{
 
   event.preventDefault();
 console.log("first name",firstName );
 console.log("last name",lasttName);
 console.log("age ",age);
+
 console.log(userData.length);
 
 
@@ -187,65 +193,67 @@ setuserData([...userData, { id:newId,firstName:firstName,lasttName:lasttName,age
 
 } }>
 
+<div className='hightable'>
 
 
 
-  <input  onChange={(event)=>{
+
+  <input className='editFirstname'  onChange={(event)=>{
     setfirstName(event.target.value)
   }}
    placeholder='first name'/>
 
 
 
- <input   onChange={(event)=>{
+ <input className='editlastname'  onChange={(event)=>{
     setlasttName(event.target.value)
   }}
  placeholder='last name'/>
 
 
- <input onChange={(event)=>{
+ <input className='editage' onChange={(event)=>{
     setAge(event.target.value)
   }}                       type='Number' placeholder='age'/>
 
 
- <input type="submit"/>
-
+ <input className='editsubmit' type="submit"/>
+</div>
 </form>
 
+</div>
 
 
-
-
+<div className='tableNames'>
       <table border={1}>
 
       <thead>
 <tr> 
-  <td>
+  <td className='ID'>
 ID 
   </td>
 
 
  
-  <td>
+  <td className='first'>
 First Name 
   </td>
 
 
 
 
-  <td>
+  <td className='last'>
 Last Name 
   </td>
 
- <td>
+ <td className='age'> 
 age 
   </td>
 
 
-  <td>
+  <td className='deleat'>
     Delete
   </td>
-  <td>
+  <td className='update'>
     Update
   </td>
 
@@ -312,13 +320,15 @@ Delete
 
 
 
-    <Button onClick={()=>{
+    <Button  onClick={()=>{
 
 setfirstName(user.firstName);
 setlasttName( user.lasttName);
 setAge(user.age);
+setIdToUpdate(user.id);
+handleOpen();
 
-  handleOpen();
+  
     }}>
     
 
@@ -347,10 +357,10 @@ Update
     
 
 
-      </table>
+      </table></div>
 
- <div>
-      <Button onClick={handleOpen}>Open modal</Button>
+ <div >
+      <Button  onClick={handleOpen}>Open modal</Button>
       <Modal
         open={open}
         onClose={handleClose}
@@ -358,58 +368,42 @@ Update
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <form onSubmit={(event)=>{
+          <form  onSubmit={(event)=>{
 
-  event.preventDefault();
-console.log("first name",firstName );
-console.log("last name",lasttName);
-console.log("age ",age);
-console.log(userData.length);
+event.preventDefault();
+console.log("You want to update the user with id",idToUpdate);
+userData.forEach(
+(user,index)=>{
+if(user.id===idToUpdate){
 
-
-var highestId =0;
-for(let i=0; i<userData.length;i++){
-
-  console.log ("userData[i].id",userData[i].id)
-
-  if( userData [i].id>=highestId){
-
-    highestId=userData[i].id+1;
-    console .log ("highest Id ",highestId);
-  }
-
-
-  
-}
-let newId = 1;
-let exists = true;
-
-for (let i = 1; ; i++) {
-  exists = false;
-
-  for (let j = 0; j < userData.length; j++) {
-    if (userData[j].id === i) {
-      exists = true;
-      break;
-    }
-  }
-
-  if (!exists) {
-    newId = i;
-    break;
-  }
+  console.log (" user before update ",user );
+  user.firstName=firstName;
+  user.lasttName=lasttName;
+  user.age=age;
+  console.log("user after update",user);
+  const newUserData=[...userData];
+  newUserData[index]=user;
+  setuserData(newUserData);
+  handleClose();
 }
 
-console.log("New available ID:", newId);
+}
+
+)
 
 
 
-setuserData([...userData, { id:newId,firstName:firstName,lasttName:lasttName,age:age}])
 
 
 
 
 
+
+
+
+
+
+ 
 
 } }>
 
@@ -440,9 +434,9 @@ setuserData([...userData, { id:newId,firstName:firstName,lasttName:lasttName,age
 
         </Box>
       </Modal>
-    </div>
+    
 
-
+</div>
         
     </Paper>
   );
