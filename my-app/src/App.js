@@ -7,7 +7,7 @@ import Footer from './component/footer'
 import Menu from './component/menu' 
 import {BrowserRouter, Route,Routes }from 'react-router-dom'
 import DataTable from './component/table';
-
+import RefNew from './component/ref';
 
 
 
@@ -30,6 +30,7 @@ function App() {
       <Route path='/about' element = {<About/>}/>
       <Route path='/m' element ={ <Menu/>}/>
 
+ <Route path='/mm' element ={ <RefNew/>}/>
 </Routes>
 
 
